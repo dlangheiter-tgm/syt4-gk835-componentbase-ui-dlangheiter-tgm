@@ -1,8 +1,20 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const client = require('./client');
+import {EmployeeList} from "./EmployeeList";
+import {CssBaseline, withStyles} from "@material-ui/core";
+import {CreateEmployee} from "./CreateEmployee";
 
-class App extends React.Component {
+const styles = (theme) => ({
+    root: {
+        minHeight: '100vh',
+        minWidth: '100vw',
+        backgroundColor: theme.palette.background.default,
+        padding: theme.spacing.unit * 4,
+    }
+});
+
+class app extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,45 +28,20 @@ class App extends React.Component {
     }
 
     render() {
+        const {classes} = this.props;
         return (
-            <EmployeeList employees={this.state.employees}/>
+            <div className={classes.root}>
+                <CssBaseline/>
+                <EmployeeList employees={this.state.employees}/>
+                <br/><br/><br/>
+            </div>
         )
     }
 }
 
-class EmployeeList extends React.Component {
-    render() {
-        const employees = this.props.employees.map(employee =>
-            <Employee key={employee._links.self.href} employee={employee}/>
-        );
-        return (
-            <table>
-                <tbody>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Description</th>
-                </tr>
-                {employees}
-                </tbody>
-            </table>
-        )
-    }
-}
-
-class Employee extends React.Component{
-    render() {
-        return (
-            <tr>
-                <td>{this.props.employee.firstName}</td>
-                <td>{this.props.employee.lastName}</td>
-                <td>{this.props.employee.description}</td>
-            </tr>
-        )
-    }
-}
+const App = withStyles(styles)(app);
 
 ReactDOM.render(
-    <App />,
+    <App/>,
     document.getElementById('react')
-)
+);
