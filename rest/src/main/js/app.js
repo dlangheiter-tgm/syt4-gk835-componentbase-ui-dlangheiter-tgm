@@ -23,8 +23,7 @@ class app extends React.Component {
     }
 
     componentDidMount() {
-        client({method: 'GET', path: '/api/employees'}).done(response => {
-            console.log('GET', response);
+        client({method: 'GET', path: '/api/employees'}).done(response => {g
             this.setState({employees: response.entity._embedded.employees});
         });
     }
