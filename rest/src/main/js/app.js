@@ -34,6 +34,7 @@ class app extends React.Component {
                 <CssBaseline/>
                 <EmployeeList employees={this.state.employees}/>
                 <br/><br/><br/>
+                <CreateEmployee/>
             </div>
         )
     }
