@@ -19,11 +19,22 @@ class app extends React.Component {
     constructor(props) {
         super(props);
         this.state = {employees: []};
+        this.addEmployee = this.addEmployee.bind(this);
     }
 
     componentDidMount() {
         client({method: 'GET', path: '/api/employees'}).done(response => {
+            console.log('GET', response);
             this.setState({employees: response.entity._embedded.employees});
+        });
+    }
+
+    addEmployee(entity) {
+        this.setState({
+            employees: [
+                ...this.state.employees,
+                entity
+            ],
         });
     }
 
@@ -34,7 +45,7 @@ class app extends React.Component {
                 <CssBaseline/>
                 <EmployeeList employees={this.state.employees}/>
                 <br/><br/><br/>
-                <CreateEmployee/>
+                <CreateEmployee addEmployee={this.addEmployee}/>
             </div>
         )
     }
