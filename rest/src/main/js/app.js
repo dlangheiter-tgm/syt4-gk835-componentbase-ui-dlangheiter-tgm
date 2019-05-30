@@ -1,6 +1,6 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const client = require('./client');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import client from './client';
 import {EmployeeList} from "./EmployeeList";
 import {CssBaseline, withStyles} from "@material-ui/core";
 import {CreateEmployee} from "./CreateEmployee";
@@ -8,7 +8,7 @@ import {CreateEmployee} from "./CreateEmployee";
 const styles = (theme) => ({
     root: {
         minHeight: '100vh',
-        minWidth: '100vw',
+        width: '100vw',
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 4,
     }
@@ -23,7 +23,7 @@ class app extends React.Component {
     }
 
     componentDidMount() {
-        client({method: 'GET', path: '/api/employees'}).done(response => {g
+        client({method: 'GET', path: '/api/employees'}).done(response => {
             this.setState({employees: response.entity._embedded.employees});
         });
     }
