@@ -5,7 +5,10 @@ Die detaillierte [Aufgabenstellung](TASK.md) beschreibt die notwendigen Schritte
 
 ## Implementierung
 
-
+## Probleme
+Wenn man den JS code ändert muss man diesen erst neu "Compilieren". Dies kann man machen indem
+man das Programm über Maven neustarten oder `mvn install` ausfürhen. Danach kann man es im 
+Browser neu laden.
 
 ## Fragen
 + **Was ist React?** 

@@ -8,7 +8,10 @@ const styles = theme => ({
     },
     item: {
         padding: theme.spacing.unit * 4,
-    }
+    },
+    resetLink: {
+        textDecoration: 'none',
+    },
 });
 
 class windparks extends React.Component {
@@ -41,7 +44,7 @@ class windparks extends React.Component {
                 <Grid container spacing={16}>
                     {this.state.windparks.map(wp => (
                         <Grid item xs={6} key={wp.ownId}>
-                            <Link to={`windpark/${wp.ownId}`}>
+                            <Link to={`windpark/${wp.ownId}`} className={classes.resetLink}>
                                 <Card className={classes.item}>
                                     <Typography variant={"h3"}>Windpark {wp.ownId}</Typography>
                                     <Typography>{wp.jsonDataUrl}</Typography>
