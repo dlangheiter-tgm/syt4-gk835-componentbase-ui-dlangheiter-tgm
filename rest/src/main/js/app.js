@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import client from './client';
-import {EmployeeList} from "./EmployeeList";
+import "@babel/polyfill";
 import {CssBaseline, withStyles} from "@material-ui/core";
-import {CreateEmployee} from "./CreateEmployee";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Windparks} from "./Windparks";
+import {Windengines} from "./Windengines";
 
 const styles = (theme) => ({
     root: {
@@ -18,23 +19,7 @@ class app extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {employees: []};
-        this.addEmployee = this.addEmployee.bind(this);
-    }
-
-    componentDidMount() {
-        client({method: 'GET', path: '/api/employees'}).done(response => {
-            this.setState({employees: response.entity._embedded.employees});
-        });
-    }
-
-    addEmployee(entity) {
-        this.setState({
-            employees: [
-                ...this.state.employees,
-                entity
-            ],
-        });
+        this.state = {windparks: []};
     }
 
     render() {
@@ -42,9 +27,10 @@ class app extends React.Component {
         return (
             <div className={classes.root}>
                 <CssBaseline/>
-                <EmployeeList employees={this.state.employees}/>
-                <br/><br/><br/>
-                <CreateEmployee addEmployee={this.addEmployee}/>
+                <Router>
+                    <Route path={'/'} exact={true} component={Windparks} />
+                    <Route path={'/windpark/:wpId'} component={Windengines} />
+                </Router>
             </div>
         )
     }
