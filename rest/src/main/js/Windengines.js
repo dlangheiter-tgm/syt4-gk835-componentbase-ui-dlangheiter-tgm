@@ -1,6 +1,7 @@
 import React from 'react';
 import {withStyles, Typography, Grid, Card} from "@material-ui/core";
 import {Line} from "react-chartjs-2";
+import {buildPath} from "./settings";
 
 const styles = theme => ({
     root: {
@@ -26,7 +27,7 @@ class windengines extends React.Component {
     }
 
     async fetchData(wpId) {
-        const res = await fetch(`http://localhost:8180/windpark/${wpId}/data/json`);
+        const res = await fetch(buildPath(`windpark/${wpId}`));
         const data = await res.json();
 
         const setData = {};
@@ -62,7 +63,7 @@ class windengines extends React.Component {
                 <Grid container spacing={16}>
                     {
                         Object.keys(this.state.windengines).map(weId => (
-                            <Grid item xs={12}>
+                            <Grid item xs={12} key={weId}>
                                 <Card className={classes.item}>
                                     <Typography variant={"h3"}>Windengine {weId}</Typography>
                                     <Line data={{

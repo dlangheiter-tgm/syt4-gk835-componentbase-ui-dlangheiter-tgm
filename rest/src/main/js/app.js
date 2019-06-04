@@ -17,11 +17,6 @@ const styles = (theme) => ({
 
 class app extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {windparks: []};
-    }
-
     render() {
         const {classes} = this.props;
         return (

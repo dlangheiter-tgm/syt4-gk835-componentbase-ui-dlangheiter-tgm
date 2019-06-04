@@ -1,6 +1,7 @@
 import React from 'react';
 import {withStyles, Typography, List, ListItem, ListItemText, Grid, Card} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import {buildPath} from "./settings";
 
 const styles = theme => ({
     root: {
@@ -29,7 +30,7 @@ class windparks extends React.Component {
     }
 
     async fetchData() {
-        const res = await fetch("http://localhost:8180/windpark/data/json");
+        const res = await fetch(buildPath('windpark'));
         const data = await res.json();
         this.setState({windparks: data});
     }
